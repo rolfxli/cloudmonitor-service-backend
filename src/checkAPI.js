@@ -5,10 +5,13 @@ class checkAPI {
     targetInformation = []
     responses = []
 
-    checkAPIs() {
-        for (let information in this.targetInformation) {
+    checkAPIs(targetInformation) {
+        this.targetInformation = targetInformation
+        this.targetInformation.forEach((information) => {
             this.executeAPICall(information)
-        }
+        })
+        console.log(this.responses)
+        return this.responses
     }
 
     executeAPICall(information) {

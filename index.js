@@ -18,4 +18,4 @@ app.get('/', (req, res) => {
     res.send('A ping has been made to all the tracked URLs.')
 })
 
-Driver.pingAllTargets()
+Driver.handleProcess()

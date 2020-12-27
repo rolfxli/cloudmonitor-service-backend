@@ -2,16 +2,13 @@ const checkAPI = require('./checkAPI')
 
 // driver class to handle retrieving target APIs, pinging targets, and recording results
 class Driver {
-    targets = []
+    targetInformation = [{url: 'http://www.google.com', method: 'GET'}, {url: 'https://cloudmonitortestget.free.beeceptor.com', method: 'GET'}]
     responses = []
     CheckAPI = new checkAPI()
 
     // handler method to control entire process
-    pingAllTargets() {
-        //
-        for(let target in this.targets) {
-            this.checkTarget(target)
-        }
+    handleProcess() {
+        this.CheckAPI.checkAPIs(this.targetInformation)
     }
 
     // retrieve the list of users
@@ -19,16 +16,9 @@ class Driver {
         // for each user ping the URLs in their projects
     }
 
-    // retrieve all the URLs that will be pinged
-    retrieveURLs() {
-        // get all the URLS
-    }
+    // notify users on failure
+    notifyUsers() {
 
-    // ping an API
-    checkTarget(target) {
-        this(target, (res) => {
-            this.responses.push(res)
-        })
     }
 
     // record data
