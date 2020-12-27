@@ -1,0 +1,23 @@
+{
+  "name": "cloudmonitor-service-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rolfxli/cloudmonitor-service-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rolfxli/cloudmonitor-service-backend/issues"
+  },
+  "homepage": "https://github.com/rolfxli/cloudmonitor-service-backend#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
