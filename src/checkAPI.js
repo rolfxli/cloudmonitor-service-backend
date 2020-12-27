@@ -12,12 +12,11 @@ class checkAPI {
         this.targetInformation.forEach((information) => {
             this.executeAPICall(information)
         })
-        console.log(this.responses)
     }
 
     executeAPICall(information) {
         apiService.makeRequest(information, (resObj) => {
-            console.log(resObj)
+            this.DatabaseService.updateStatus(resObj)
         })
     }
 }

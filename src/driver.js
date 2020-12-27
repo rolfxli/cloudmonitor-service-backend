@@ -3,26 +3,38 @@ const databaseService = require('./services/databaseService')
 
 // driver class to handle retrieving target APIs, pinging targets, and recording results
 class Driver {
-    targetInformation = [{url: 'http://www.google.com', method: 'GET'}, {url: 'https://cloudmonitortestget.free.beeceptor.com', method: 'GET'}]
+    rawTargetInformation = []
+    formattedTargetInformation = []
     responses = []
+    testInformation = [{url: 'http://www.google.com', method: 'GET'}, {url: 'https://cloudmonitortestget.free.beeceptor.com', method: 'GET'}]
+
     CheckAPI = new checkAPI()
     DatabaseService = new databaseService()
 
     // handler method to control entire process
-    handleProcess() {
+    async handleProcess() {
         this.DatabaseService.connect()
-        //this.DatabaseService.getUrls()
-        this.DatabaseService.getUsers()
-        this.CheckAPI.checkAPIs(this.targetInformation)
+
+        // set the API targets
+        await this.retrieveAllUrls()
+        this.formatRequest()
+        console.log(this.formattedTargetInformation)
+
+        // execute API requests and update corresponding status on database
+        this.CheckAPI.checkAPIs(this.formattedTargetInformation)
     }
 
     // retrieve the list of users
     retrieveUsers() {
-        // for each user ping the URLs in their projects
+        this.DatabaseService.getAllUsers()
     }
 
-    retrieveUrls() {
+    async retrieveAllUrls() {
+        this.rawTargetInformation = await this.DatabaseService.getAllUrls()
+    }
 
+    retrieveProjects() {
+        this.DatabaseService.getAllProjects()
     }
 
     // notify users on failure
@@ -30,7 +42,25 @@ class Driver {
 
     }
 
-    // record data
+    // format raw target information
+    formatRequest() {
+        var len = this.rawTargetInformation.length
+        for (var i = 0; i < len; ++i) {
+            var info = this.rawTargetInformation[i]
+            this.formattedTargetInformation.push({
+                urlID: info.UrlId,
+                url: info.Link,
+                method: info.RequestType
+            })
+        }
+        // this.rawTargetInformation.forEach((information) => {
+        //     this.formattedTargetInformation.push({
+        //         urlID: information.UrlId,
+        //         url: information.Link,
+        //         method: information.RequestType
+        //     })
+        // })
+    }
 }
 
 module.exports = Driver;
