@@ -1,11 +1,17 @@
+const checkAPI = require('./checkAPI')
+
 // driver class to handle retrieving target APIs, pinging targets, and recording results
 class Driver {
-    urls = ['https://www.youtube.com/', 'https://www.google.com/', 'https://www.facebook.com/']
+    targets = []
+    responses = []
+    CheckAPI = new checkAPI()
 
     // handler method to control entire process
-    async pingAllTargets() {
-        // ensure all users are retrieved from database
-        await this.retrieveUsers()
+    pingAllTargets() {
+        //
+        for(let target in this.targets) {
+            this.checkTarget(target)
+        }
     }
 
     // retrieve the list of users
@@ -18,9 +24,11 @@ class Driver {
         // get all the URLS
     }
 
-    // 
-    pingURLs() {
-        // ping the URLs
+    // ping an API
+    checkTarget(target) {
+        this(target, (res) => {
+            this.responses.push(res)
+        })
     }
 
     // record data
