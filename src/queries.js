@@ -8,7 +8,7 @@ queries.get = {
 }
 
 queries.post = {
-    responseTime: 'UPDATE "ResponseTime" SET Timestamp=($1), ResponseTime=($2) WHERE UrlId=($3)'
+    responseTime: 'UPDATE "ResponseTime" SET "Timestamp"=($1), "ResponseTime"=($2) WHERE "UrlId"=($3)'
 }
 
 module.exports = queries

@@ -16,6 +16,7 @@ class checkAPI {
 
     executeAPICall(information) {
         apiService.makeRequest(information, (resObj) => {
+            console.log(resObj)
             this.DatabaseService.updateStatus(resObj)
         })
     }

@@ -1,21 +1,19 @@
 const checkAPI = require('./checkAPI')
 const databaseService = require('./services/databaseService')
+const config = require('./config')
 
 // driver class to handle retrieving target APIs, pinging targets, and recording results
 class Driver {
     rawTargetInformation = []
     formattedTargetInformation = []
     responses = []
-    testInformation = [{url: 'http://www.google.com', method: 'GET'}, {url: 'https://cloudmonitortestget.free.beeceptor.com', method: 'GET'}]
+    testInformation = config.testInformation
 
     CheckAPI = new checkAPI()
     DatabaseService = new databaseService()
 
     // handler method to control entire process
     async handleProcess() {
-        this.DatabaseService.connect()
-
-        //this.retrieveAllProjects()
         await this.retrieveAllResponseTimes()
 
         // set the API targets
