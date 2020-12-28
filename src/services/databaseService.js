@@ -1,6 +1,6 @@
 const Pool = require('pg').Pool
-const config = require('../config')
-const queries = require('../queries')
+const config = require('../providers/config')
+const queries = require('../providers/queries')
 
 class databaseService {
     // set up the connection to the database

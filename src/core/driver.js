@@ -1,6 +1,6 @@
 const checkAPI = require('./checkAPI')
-const databaseService = require('./services/databaseService')
-const config = require('./config')
+const databaseService = require('../services/databaseService')
+const config = require('../providers/config')
 
 // driver class to handle retrieving target APIs, pinging targets, and recording results
 class Driver {
@@ -40,11 +40,6 @@ class Driver {
 
     async retrieveAllResponseTimes() {
         await this.DatabaseService.getAllResponseTimes()
-    }
-
-    // notify users on failure
-    notifyUsers() {
-
     }
 
     // format raw target information
