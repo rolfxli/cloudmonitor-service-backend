@@ -31,6 +31,10 @@ function makeRequest(information, callback) {
             responseStart = new Date(res.timingStart);
         }
 
+        if (responseTime) {
+            responseTime = Math.round(responseTime)
+        }
+
         resObj = {
             urlId: information.urlID,
             url: information.url,
