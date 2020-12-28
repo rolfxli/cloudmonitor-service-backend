@@ -27,8 +27,6 @@ class databaseService {
     // update status of a target following liveness check
     async updateStatus(resObj) {
         var values = [resObj.responseStart, resObj.responseTime, resObj.urlId]
-        // console.log(values)
-        // console.log(queries.post.responseTime)
         
         var query = this.client.query(queries.post.responseTime, values, (err, res) => {
             if (err) {
@@ -37,14 +35,6 @@ class databaseService {
                 console.log('Finished query')
             }
         })
-        
-        // var query = this.client.query(queries.post.responseTime, values, (err, res) => {
-        //     if (err) {
-        //         console.log('Failed to update status in database.')
-        //     } else {
-        //         console.log('Sucessfully updated database.')
-        //     }
-        // })
     }
 
     async getAllUsers() {

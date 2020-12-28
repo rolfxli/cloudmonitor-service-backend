@@ -60,13 +60,6 @@ class Driver {
                 method: info.RequestType
             })
         }
-        // this.rawTargetInformation.forEach((information) => {
-        //     this.formattedTargetInformation.push({
-        //         urlID: information.UrlId,
-        //         url: information.Link,
-        //         method: information.RequestType
-        //     })
-        // })
     }
 }
 
