@@ -1,10 +1,9 @@
-const apiService = require('./services/APIservice')
-const databaseService = require('./services/databaseService')
+const apiService = require('../services/APIservice')
+const databaseService = require('../services/databaseService')
 
 class checkAPI {
     // information required for particular API calls
     targetInformation = []
-    responses = []
     DatabaseService = new databaseService()
 
     checkAPIs(targetInformation) {

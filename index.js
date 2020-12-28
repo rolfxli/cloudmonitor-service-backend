@@ -3,9 +3,11 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT || 4001
 // import other requirements
-const driver = require('./src/driver.js')
+const driver = require('./src/core/driver')
+const notification = require('./src/core/notification')
 
 var Driver = new driver()
+var Notification = new notification()
 
 // listen to the provided port, no actions are taken
 app.listen(port, () => {
@@ -14,8 +16,14 @@ app.listen(port, () => {
 
 // GET request as entry point for GCP cron workflow trigger
 app.get('/', (req, res) => {
-    Driver.pingAllTargets()
-    res.send('A ping has been made to all the tracked URLs.')
+    Driver.handleProcess()
+    res.send('A ping has been made to all the targets.')
+})
+
+// GET request as entry point for GCP cron job triggering user notification
+app.get('/notify', (req, res) => {
+    Notification.notifyUsers()
+    res.send('Users with dead targets will be notified.')
 })
 
 Driver.handleProcess()
