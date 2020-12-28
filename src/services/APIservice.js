@@ -38,7 +38,7 @@ function makeRequest(information, callback) {
             responseTime: responseTime
         }
 
-        console.log(resObj)
+        //console.log(resObj)
         callback(resObj)
     })
 }

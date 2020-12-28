@@ -15,6 +15,9 @@ class Driver {
     async handleProcess() {
         this.DatabaseService.connect()
 
+        //this.retrieveAllProjects()
+        await this.retrieveAllResponseTimes()
+
         // set the API targets
         await this.retrieveAllUrls()
         this.formatRequest()
@@ -33,8 +36,12 @@ class Driver {
         this.rawTargetInformation = await this.DatabaseService.getAllUrls()
     }
 
-    retrieveProjects() {
+    retrieveAllProjects() {
         this.DatabaseService.getAllProjects()
+    }
+
+    async retrieveAllResponseTimes() {
+        await this.DatabaseService.getAllResponseTimes()
     }
 
     // notify users on failure
