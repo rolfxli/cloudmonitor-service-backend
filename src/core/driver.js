@@ -53,7 +53,9 @@ class Driver {
             this.formattedTargetInformation.push({
                 urlID: info.UrlId,
                 url: info.Link,
-                method: info.RequestType
+                method: info.RequestType,
+                numSuccess: info.NumSuccess,
+                numFail: info.NumFailure
             });
         }
     }

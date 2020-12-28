@@ -22,6 +22,14 @@ class databaseService {
                 console.log(err);
             }
         })
+
+        var urlValues = [resObj.status, resObj.numSuccess, resObj.numFail, resObj.urlId]
+        this.pool.query(queries.post.createResponseRecord, urlValues, (err, res) => {
+            if (err) {
+                console.log(err);
+            }
+        })
+
     }
 
     // retrieve all users in the database (data MUST be retrieved before return)

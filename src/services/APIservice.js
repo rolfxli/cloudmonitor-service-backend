@@ -17,12 +17,18 @@ function makeRequest(information, callback) {
         var responseTime = null;
         var responseStart = null;
 
+        var success = information.numSuccess;
+        var failure = information.numFail;
+
         if (err) {
-            status = 'Failed';
+            status = 'FAIL';
+            failure++;
         } else if ((res.statusCode == 200) || (res.statusCode == 201)) {
-            status = 'Success';
+            status = 'SUCCESS';
+            success++;
         } else {
-            status = 'Undetermined';
+            status = 'FAIL';
+            failure++;
         }
 
         if (res) {
@@ -41,7 +47,9 @@ function makeRequest(information, callback) {
             status: status,
             responseCode: responseCode,
             responseStart: responseStart,
-            responseTime: responseTime
+            responseTime: responseTime,
+            numFail: failure,
+            numSuccess: success
         };
 
         callback(resObj);
