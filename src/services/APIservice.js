@@ -1,32 +1,34 @@
-const request = require('request')
+const request = require('request');
 
 function makeRequest(information, callback) {
-    //console.log(information)
-    //  have a separate method to format the options based on info stored in db?
+    // have a separate method to format the options based on info stored in db?
     let options = {
         url: information.url,
         method: information.method,
         time: true
-    }
-    //console.log(options)
+    };
+    
+    /* executes API request given options (url, type, headers, auth)
+       returns custom object {urlId, url, status, responseCode, responseStart, responseTime}
+    */
     request(options, (err, res, body) => {
-        var status = 'Pending'
-        var responseCode = null
-        var responseTime = null
-        var responseStart = null
+        var status = 'Pending';
+        var responseCode = null;
+        var responseTime = null;
+        var responseStart = null;
 
         if (err) {
-            status = 'Failed'
+            status = 'Failed';
         } else if ((res.statusCode == 200) || (res.statusCode == 201)) {
-            status = 'Success'
+            status = 'Success';
         } else {
-            status = 'Undetermined'
+            status = 'Undetermined';
         }
 
         if (res) {
-            responseCode = res.statusCode
-            responseTime = res.timings.end
-            responseStart = new Date(res.timingStart)
+            responseCode = res.statusCode;
+            responseTime = res.timings.end;
+            responseStart = new Date(res.timingStart);
         }
 
         resObj = {
@@ -36,11 +38,10 @@ function makeRequest(information, callback) {
             responseCode: responseCode,
             responseStart: responseStart,
             responseTime: responseTime
-        }
+        };
 
-        //console.log(resObj)
-        callback(resObj)
+        callback(resObj);
     })
 }
 
-module.exports.makeRequest = makeRequest
+module.exports.makeRequest = makeRequest;
