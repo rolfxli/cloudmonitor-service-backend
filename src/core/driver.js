@@ -14,7 +14,7 @@ class Driver {
 
     // handler method to control entire process
     async handleProcess() {
-        await this.retrieveAllResponseTimes();
+        // await this.retrieveAllResponseTimes();
 
         // set the API targets
         await this.retrieveAllUrls();
