@@ -14,7 +14,7 @@ class databaseService {
     });
 
     // update row containing matching UrlID in ResponseTime table
-    async updateStatus(resObj) {
+    async createResponseRecord(resObj) {
         var values = [resObj.responseStart, resObj.responseTime, resObj.urlId]
         
         this.pool.query(queries.post.responseTime, values, (err, res) => {
@@ -22,6 +22,14 @@ class databaseService {
                 console.log(err);
             }
         })
+
+        var urlValues = [resObj.status, resObj.numSuccess, resObj.numFail, resObj.urlId]
+        this.pool.query(queries.post.createResponseRecord, urlValues, (err, res) => {
+            if (err) {
+                console.log(err);
+            }
+        })
+
     }
 
     // retrieve all users in the database (data MUST be retrieved before return)
