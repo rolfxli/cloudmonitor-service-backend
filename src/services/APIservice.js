@@ -23,6 +23,9 @@ function makeRequest(information, callback) {
         if (err) {
             status = 'FAIL';
             failure++;
+            responseStart = new Date();
+            responseTime = 0;
+            responseCode = 400;
         } else if ((res.statusCode == 200) || (res.statusCode == 201)) {
             status = 'SUCCESS';
             success++;
