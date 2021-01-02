@@ -55,7 +55,8 @@ class Driver {
                 url: info.Link,
                 method: info.RequestType,
                 numSuccess: info.NumSuccess,
-                numFail: info.NumFailure
+                numFail: info.NumFailure,
+                requestbody: info.RequestBody
             });
         }
     }
