@@ -3,15 +3,22 @@ const request = require('request');
 function makeRequest(information, callback) {
     // have a separate method to format the options based on info stored in db?
     var requestBody = ""
+    var requestHeader = ""
     try {
         requestBody = JSON.parse(information.requestbody);
     } catch (err) {
         requestBody = ""
     }
+    try {
+        requestHeader = JSON.parse(information.requestheader);
+    } catch (err) {
+        requestHeader = ""
+    }
     let options = {
         url: information.url,
         method: information.method,
-        headers: requestBody,
+        headers: requestHeader,
+        body: requestBody,
         time: true
     };
     

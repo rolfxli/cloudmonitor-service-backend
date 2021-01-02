@@ -56,6 +56,7 @@ class Driver {
                 method: info.RequestType,
                 numSuccess: info.NumSuccess,
                 numFail: info.NumFailure,
+                requestheader: info.RequestHeader,
                 requestbody: info.RequestBody
             });
         }
