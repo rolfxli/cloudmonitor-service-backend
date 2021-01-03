@@ -19,7 +19,6 @@ class Driver {
         // set the API targets
         await this.retrieveAllUrls();
         this.formatRequest();
-        console.log(this.formattedTargetInformation);
 
         await this.getEmails();
         this.mapEmails();
@@ -37,7 +36,7 @@ class Driver {
         var len = this.emails.length;
         for (let i = 0; i < len; ++i) {
             var email = this.emails[i]['Email'];
-            var urlid = this.emails[i]['Urlid'];
+            var urlid = this.emails[i]['UrlId'];
             this.targetEmailPairs[urlid] = email
         }
     }
