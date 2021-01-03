@@ -1,0 +1,4 @@
+cron:
+- description: "Node service for testing API endpoints"
+  url: /alltargets
+  schedule: every 4 hours
