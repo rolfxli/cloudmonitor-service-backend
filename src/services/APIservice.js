@@ -1,6 +1,6 @@
 const request = require('request');
 
-function makeRequest(information, callback) {
+function makeRequest(information, emailMap, callback) {
     // have a separate method to format the options based on info stored in db?
     var requestBody = ""
     var requestHeader = ""
@@ -37,12 +37,14 @@ function makeRequest(information, callback) {
         if (err) {
             status = 'FAIL';
             failure++;
+            sendFailEmail(information.urlID, emailMap);
         } else if ((res.statusCode == 200) || (res.statusCode == 201)) {
             status = 'SUCCESS';
             success++;
         } else {
             status = 'FAIL';
             failure++;
+            sendFailEmail(information.urlID, emailMap);
         }
 
         if (res) {
@@ -70,4 +72,23 @@ function makeRequest(information, callback) {
     })
 }
 
+// find the Email assosiated with the target ID, and trigger email sendout 
+function sendFailEmail(urlid, emailMap) {
+    var email = emailMap[urlid]; //https://valid-actor-299903.ue.r.appspot.com/sendemail
+    let requestBody = JSON.stringify({email});
+    let options = {
+        url: 'https://valid-actor-299903.ue.r.appspot.com/sendemail',
+        body: requestBody
+    }
+    request(options, (res, err, body) => {
+        if (res) {
+
+        }
+        if (err) {
+            console.log(err);
+        }
+    });
+}
+
 module.exports.makeRequest = makeRequest;
+module.exports.sendFailEmail = sendFailEmail;

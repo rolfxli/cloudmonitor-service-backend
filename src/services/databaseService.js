@@ -74,6 +74,21 @@ class databaseService {
         }
         return [];
     }
+
+    // return rows with TargetID and Emails
+    async getEmails() {
+        try {
+            var query = await this.pool.query(queries.get.getEmails);
+            if (query) {
+                if (query.rows) {
+                    return query.rows
+                }
+            }
+        } catch (err) {
+            console.log(err)
+        }
+        return []
+    }
 }
 
 module.exports = databaseService;

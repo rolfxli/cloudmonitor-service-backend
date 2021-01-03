@@ -7,6 +7,8 @@ class Driver {
     rawTargetInformation = [];
     formattedTargetInformation = [];
     responses = [];
+    emails = []
+    targetEmailPairs = {};
     testInformation = config.testInformation;
 
     CheckAPI = new checkAPI();
@@ -14,15 +16,30 @@ class Driver {
 
     // handler method to control entire process
     async handleProcess() {
-        // await this.retrieveAllResponseTimes();
-
         // set the API targets
         await this.retrieveAllUrls();
         this.formatRequest();
         console.log(this.formattedTargetInformation);
 
+        await this.getEmails();
+        this.mapEmails();
+
         // execute API requests and update corresponding status on database
-        this.CheckAPI.checkAPIs(this.formattedTargetInformation);
+        this.CheckAPI.checkAPIs(this.formattedTargetInformation, this.targetEmailPairs);
+    }
+
+    async getEmails() {
+        this.emails = await this.DatabaseService.getEmails();
+    }
+
+    // map emails to their targetIDs
+    mapEmails() {
+        var len = this.emails.length;
+        for (let i = 0; i < len; ++i) {
+            var email = this.emails[i]['Email'];
+            var urlid = this.emails[i]['Urlid'];
+            this.targetEmailPairs[urlid] = email
+        }
     }
 
     // retrieve all users in the database (data MUST be retrieved before return)
