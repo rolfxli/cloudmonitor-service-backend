@@ -20,10 +20,4 @@ app.get('/', (req, res) => {
     res.send('A ping has been made to all the targets.')
 })
 
-// GET request as entry point for GCP cron job triggering user notification
-app.get('/notify', (req, res) => {
-    Notification.notifyUsers()
-    res.send('Users with dead targets will be notified.')
-})
-
 Driver.handleProcess()
