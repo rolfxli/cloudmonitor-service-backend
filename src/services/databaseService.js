@@ -65,7 +65,7 @@ class databaseService {
             var query = await this.pool.query(queries.get.getAllResponseTimes);
             if (query) {
                 if (query.rows) {
-                    console.log(query.rows);
+                    //console.log(query.rows);
                     return query.rows;
                 }
             } 
@@ -73,6 +73,22 @@ class databaseService {
             console.log('Error retrieving response times.');
         }
         return [];
+    }
+
+    // return rows with TargetID and Emails
+    async getEmails() {
+        try {
+            var query = await this.pool.query(queries.get.getEmails);
+            if (query) {
+                if (query.rows) {
+                    //console.log(query.rows)
+                    return query.rows
+                }
+            }
+        } catch (err) {
+            //console.log(err)
+        }
+        return []
     }
 }
 
