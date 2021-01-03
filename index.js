@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 })
 
 // GET request as entry point for GCP cron workflow trigger
-app.get('/alltarget', (req, res) => {
+app.get('/alltargets', (req, res) => {
     Driver.handleProcess()
     res.send('A ping has been made to all the targets.')
 })
