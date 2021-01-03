@@ -14,10 +14,14 @@ app.listen(port, () => {
     console.log('Listening on port ${port}')
 })
 
-// GET request as entry point for GCP cron workflow trigger
+// test 
 app.get('/', (req, res) => {
+    res.send('Application running')
+})
+
+// GET request as entry point for GCP cron workflow trigger
+app.get('/alltarget', (req, res) => {
     Driver.handleProcess()
     res.send('A ping has been made to all the targets.')
 })
 
-Driver.handleProcess()
