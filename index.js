@@ -11,7 +11,7 @@ var Notification = new notification()
 
 // listen to the provided port, no actions are taken
 app.listen(port, () => {
-    console.log('Listening on port ${port}')
+    console.log(`Listening on port ${port}`)
 })
 
 // test 
