@@ -87,7 +87,6 @@ function makeRequest(information, emailMap, callback) {
             // calculate the elapsed time for the request
             responseEnd = new Date();
             responseTime = responseEnd - responseStart;
-            responseCode = res.status;
 
             // execute the callback with necessary information
             resObj = {
