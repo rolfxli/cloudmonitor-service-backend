@@ -24,7 +24,8 @@ class Driver {
         this.mapEmails();
 
         // execute API requests and update corresponding status on database
-        this.CheckAPI.checkAPIs(this.formattedTargetInformation, this.targetEmailPairs);
+        await this.CheckAPI.checkAPIs(this.formattedTargetInformation, this.targetEmailPairs);
+        this.formattedTargetInformation = [];
     }
 
     async getEmails() {
